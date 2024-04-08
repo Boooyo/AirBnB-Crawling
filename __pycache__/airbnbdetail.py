@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 URL = "https://www.airbnb.co.kr/rooms/"
 
-
+ 
 def extract_detail(accommodation_idxs):
     for room_idx in accommodation_idxs:
         print(room_idx)

@@ -1,40 +1,50 @@
-use InstagrarnDB;
+USE InstagrarnDB;
 
-create table Insta_user(
-	idx int(9) NOT NULL auto_increment,
-	email VARCHAR(300),
+-- Insta_user 테이블 생성
+CREATE TABLE IF NOT EXISTS Insta_user (
+    idx INT(9) NOT NULL AUTO_INCREMENT,
+    email VARCHAR(300),
     phone VARCHAR(300),
     full_name VARCHAR(300),
-    id VARCHAR(300),
-    pwd VARCHAR(300),
-	PRIMARY KEY(idx)
+    user_id VARCHAR(300),
+    password VARCHAR(300),
+    PRIMARY KEY (idx)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create table Insta_likes(
-	idx int(9) NOT NULL auto_increment,
-	user_idx int(9) NOT NULL,
-	board_idx int(9) NOT NULL,
-	PRIMARY KEY(idx)
+-- Insta_likes 테이블 생성
+CREATE TABLE IF NOT EXISTS Insta_likes (
+    idx INT(9) NOT NULL AUTO_INCREMENT,
+    user_idx INT(9) NOT NULL,
+    board_idx INT(9) NOT NULL,
+    PRIMARY KEY (idx)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create table Insta_reply(
-	idx int(9) NOT NULL auto_increment,
-    board_idx int(9) NOT NULL,
-	user_idx int(9) NOT NULL,
-	reply int(9) NOT NULL,
-	PRIMARY KEY(idx)
+-- Insta_reply 테이블 생성
+CREATE TABLE IF NOT EXISTS Insta_reply (
+    idx INT(9) NOT NULL AUTO_INCREMENT,
+    board_idx INT(9) NOT NULL,
+    user_idx INT(9) NOT NULL,
+    reply_idx INT(9) NOT NULL,
+    PRIMARY KEY (idx)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create table Insta_alert(
-	idx int(9) NOT NULL auto_increment,
-	from_user_idx int(9) NOT NULL,
-	to_user_idx int(9) NOT NULL,
-    alert_type int(9) NOT NULL,
-	PRIMARY KEY(idx)
+-- Insta_alert 테이블 생성
+CREATE TABLE IF NOT EXISTS Insta_alert (
+    idx INT(9) NOT NULL AUTO_INCREMENT,
+    from_user_idx INT(9) NOT NULL,
+    to_user_idx INT(9) NOT NULL,
+    alert_type INT(9) NOT NULL,
+    PRIMARY KEY (idx)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create view Insta_reply_view as select u.id, r.board_idx, r.reply
-        from Insta_reply as r, Insta_user as u where r.user_idx = u.idx;
-        
-create view Insta_alert_view as select u.id, a.from_user_idx, a.to_user_idx, a.alert_type
-        from Insta_alert as a, Insta_user as u where a.from_user_idx = u.idx;
+-- Insta_reply_view 뷰 생성
+CREATE VIEW IF NOT EXISTS Insta_reply_view AS
+SELECT u.user_id, r.board_idx, r.reply_idx
+FROM Insta_reply AS r
+JOIN Insta_user AS u ON r.user_idx = u.idx;
+
+-- Insta_alert_view 뷰 생성
+CREATE VIEW IF NOT EXISTS Insta_alert_view AS
+SELECT u.user_id, a.from_user_idx, a.to_user_idx, a.alert_type
+FROM Insta_alert AS a
+JOIN Insta_user AS u ON a.from_user_idx = u.idx;
