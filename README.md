@@ -77,23 +77,3 @@ pip install requests
     * 작업 진행 중
 
 <br>
-
-## 📃 정보
-
-윤우성 –  dntjd851@naver.com
-
-해당 레퍼지토리는 오직 공부목적이며 공부 목적 이외의 용도로 사용불가  
-MIT 라이센스를 준수하며 ``LICENSE``에서 자세한 정보를 확인할 수 있습니다.
-
-[https://github.com/yoonwooseong/github-link](https://github.com/yoonwooseong/)
-
-<br>
-
-## 👌 기여 방법
-
-1. (<https://github.com/yourname/yourproject/fork>)을 포크합니다.
-2. (`git checkout -b feature`) 명령어로 새 브랜치를 만드세요.
-3. (`git commit -am 'Add some'`) 명령어로 커밋하세요.
-4. (`git push origin feature`) 명령어로 브랜치에 푸시하세요. 
-5. 풀리퀘스트를 보내주세요.
-
